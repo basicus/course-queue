@@ -1,0 +1,23 @@
+{
+  "name": "orders-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "db",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "goods_db",
+    "database.server.name": "warehouse",
+    "plugin.name": "pgoutput",
+    "table.include.list": "orders.transactions",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "decimal.handling.mode": "double",
+    "hstore.handling.mode": "json",
+    "topic.prefix": "warehouse",
+    "key.converter.schemas.enable": false,
+    "value.converter.schemas.enable": false,
+    "output.data.format": "JSON",
+    "message.key.columns": "orders.transactions:id"
+  }
+}
