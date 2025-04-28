@@ -1,0 +1,103 @@
+# NATS Supercluster
+services:
+  msk1:
+    image: nats:latest
+    ports:
+      - "4211:4222"
+      - "6211:6222"
+      - "7411:7422"
+      - "8222:8222"
+    command: -c /etc/nats-my.conf --server_name msk1 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-msk1:/data
+      - ./nats-configs/MSK.conf:/etc/nats-my.conf
+  msk2:
+    image: nats:latest
+    ports:
+      - "4212:4222"
+      - "6212:6222"
+      - "7412:7422"
+    command: -c /etc/nats-my.conf --server_name msk2 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-msk2:/data
+      - ./nats-configs/MSK.conf:/etc/nats-my.conf
+  msk3:
+    image: nats:latest
+    ports:
+      - "4213:4222"
+      - "6213:6222"
+      - "7413:7422"
+    command: -c /etc/nats-my.conf --server_name msk3 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-msk3:/data
+      - ./nats-configs/MSK.conf:/etc/nats-my.conf
+  yar1:
+    image: nats:latest
+    ports:
+      - "4221:4222"
+      - "6221:6222"
+      - "7421:7422"
+    command: -c /etc/nats-my.conf --server_name yar1 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-yar1:/data
+      - ./nats-configs/YAR.conf:/etc/nats-my.conf
+  yar2:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+      - "6222:6222"
+      - "7422:7422"
+    command: -c /etc/nats-my.conf --server_name yar2 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-yar2:/data
+      - ./nats-configs/YAR.conf:/etc/nats-my.conf
+  yar3:
+    image: nats:latest
+    ports:
+      - "4223:4222"
+      - "6223:6222"
+      - "7423:7422"
+    command: -c /etc/nats-my.conf --server_name yar3 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-yar3:/data
+      - ./nats-configs/YAR.conf:/etc/nats-my.conf
+  nn1:
+    image: nats:latest
+    ports:
+      - "4231:4222"
+      - "6231:6222"
+      - "7431:7422"
+    command: -c /etc/nats-my.conf --server_name nn1 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-nn1:/data
+      - ./nats-configs/NN.conf:/etc/nats-my.conf
+  nn2:
+    image: nats:latest
+    ports:
+      - "4232:4222"
+      - "6232:6222"
+      - "7432:7422"
+    command: -c /etc/nats-my.conf --server_name nn2 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-nn2:/data
+      - ./nats-configs/NN.conf:/etc/nats-my.conf
+  nn3:
+    image: nats:latest
+    ports:
+      - "4233:4222"
+      - "6233:6222"
+      - "7433:7422"
+    command: -c /etc/nats-my.conf --server_name nn3 -p 4222 -m 8222 --store_dir /data
+    volumes:
+      - nats-nn3:/data
+      - ./nats-configs/NN.conf:/etc/nats-my.conf
+volumes:
+  nats-msk1:
+  nats-msk2:
+  nats-msk3:
+  nats-yar1:
+  nats-yar2:
+  nats-yar3:
+  nats-nn1:
+  nats-nn2:
+  nats-nn3:
